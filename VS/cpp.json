@@ -49,6 +49,12 @@
 			"#define yes            cout << \"yes\" << endl;",
 			"#define no             cout << \"no\" << endl;",
 			"#define YES            cout << \"YES\" << endl;",
+			"int Ceil(int a, int b) {",
+			" return (a + b - 1) / b;",
+			"}",
+			"int Floor2(int a, int b) {",
+			"return floor((double)a/(double)b);",
+			"}",
 			"\n",
 			"void solve()",
 			"{",
@@ -248,6 +254,16 @@
 		],
 		"description": "gcd",
 	},
+	"lcm": {
+		"prefix": "lcm",
+		"body": [
+			"ll lcm(ll a, ll b)",
+			"{",
+			"return a * (b / gcd(a, b));",
+			"}",
+		],
+		"description": "gcd",
+	},
 	/** lcd
 	*/
 	"lcd": {
@@ -275,5 +291,15 @@
 			"}",
 		],
 		"description": "sum of digit",
+	},
+	"Bigmod": {
+		"prefix": "Bigmod",
+		"body": [
+			"ll bigmod(ll n, ll p, ll m){if (p <= 0) return 1;",
+			"if (p % 2 == 0){ ll ans = bigmod(n, p / 2, m);return ((ans % m) * (ans % m)) % m;}",
+			"else { ll ans = bigmod(n, p - 1, m); return ((n % m) * (ans % m)) % m;}",
+			"}",
+		],
+		"description": "Bigmod",
 	},
 }
