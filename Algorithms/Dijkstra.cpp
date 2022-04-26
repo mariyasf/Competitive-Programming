@@ -15,36 +15,17 @@ using namespace std;
 #define rall(x) x.rbegin(), x.rend()
 #define inf 10e7
 
-int32_t main()
+ll n, e;
+vpii graph[10005];
+
+vi vis(n + 1, 0), dist(n + 1, inf);
+void dijsktra(int src, int n)
 {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
 
-    ll n, e;
-    cin >> n >> e;
-    vi dist(n + 1, inf);
+    spii s; //{wt,src};
 
-    vector<vpii> graph(n + 1);
-
-    for (int i = 0; i < e; i++)
-    {
-        int u, v, w;
-        cin >> u >> v >> w;
-
-        graph[u].pb({v, w});
-        // graph[v].pb({u, w});
-    }
-
-    int src;
-    cin >> src;
-
+    s.insert({0, src}); //{wt,src};
     dist[src] = 0;
-    spii s;
-
-    //{wt,src};
-
-    s.insert({0, src});
 
     while (!s.empty())
     {
@@ -61,7 +42,27 @@ int32_t main()
             }
         }
     }
+}
+int32_t main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
 
+    cin >> n >> e;
+
+    for (int i = 0; i < e; i++)
+    {
+        int u, v, w;
+        cin >> u >> v >> w;
+
+        graph[u].pb({v, w});
+        // graph[v].pb({u, w});
+    }
+
+    int src = 1;
+
+    dijsktra(src, n);
     for (auto i = 1; i <= n; i++)
     {
         if (dist[i] < inf)
@@ -74,10 +75,11 @@ int32_t main()
 
     return 0;
 }
+
 // INPUT
 
-// 6 8
-// 1 2 2
+// 6 8 
+// 1 2 2 
 // 1 3 4
 // 2 3 1
 // 2 4 7
