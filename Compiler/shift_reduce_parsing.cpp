@@ -4,6 +4,13 @@
 // S->(S)
 // S->a
 
+// 4
+// E->E+E
+// E->E*E
+// E->(E)
+// E->id
+// id+id*id
+
 #include <iostream>
 #include <vector>
 #include <string.h>
@@ -25,11 +32,12 @@ int main()
     cout << "Enter productions\n";
     vector<grammar> prod;
     char check;
+
     for (int i = 0; i < number_of_p; ++i)
     {
         string s;
-
         cin >> s;
+
         if (i == 0)
             check = s[0];
         string lhs = s.substr(0, 1);
@@ -44,6 +52,9 @@ int main()
 
     int idx = 0, stpos = 0;
     stack[stpos] = in[idx];
+    if (stack[stpos] == 'i' && in[stpos + 1] == 'd')
+        stpos++, idx++, stack[stpos] = in[idx];
+
     idx++;
     stpos++;
     cout << "Stack\tInput\tAction";
@@ -55,6 +66,7 @@ int main()
     {
         r = 1;
         string prtn = "Reduced";
+        int count = 0;
         while (r != 0)
         {
 
@@ -62,7 +74,6 @@ int main()
                  << '$';
             for (int rep = 0; rep < stpos; rep++)
             {
-
                 cout << stack[rep];
             }
             cout << "\t";
@@ -91,12 +102,11 @@ int main()
                 {
                     temp += stack[l];
                 }
-                // cout << "\t" << temp << " ";
+
                 for (int m = 0; m < number_of_p; m++)
                 {
                     if (temp == prod[m].RHS)
                     {
-                        // cout << "\t" << temp << " ";
                         rreduce = temp;
                         for (int l = k; l < 10; l++)
                         {
@@ -113,7 +123,6 @@ int main()
                     }
                 }
             }
-            
 
             if (strlen(stack) == 1 && r == 0 && stack[0] == check && idx == (int)in.size())
             {
@@ -125,10 +134,12 @@ int main()
             else
             {
                 cout << "\t" << prtn;
-            } 
+            }
         }
 
         stack[stpos] = in[idx];
+        if (stack[stpos] == 'i' && in[idx + 1] == 'd')
+            stpos++, idx++, stack[stpos] = in[idx];
 
         idx++;
         stpos++;
@@ -137,10 +148,10 @@ int main()
 
     if (strlen(stack) == 1)
     {
-        cout << "\n String Accepted\n";
+        cout << "\n----------String Accepted----------\n";
     }
     else
     {
-        cout << "\n Invalid String\n";
+        cout << "\n----------Invalid String----------\n";
     }
 }
