@@ -5,6 +5,7 @@
 // T -> F Y
 // Y -> *F Y | ∈
 // F -> (E) | i
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -102,8 +103,6 @@ int main()
         cin >> z;
     }
 }
-
-// 8
 // E=TB
 // B=+TB
 // B=∈
