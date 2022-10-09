@@ -17,10 +17,11 @@
 	*/
 	"Default cpp formate": {
 		"prefix": [
-			"comp",
 			"cpp"
 		],
 		"body": [
+			"/*                Problem ID : $TM_FILENAME */",
+			"/*             Date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND */",
 			"#include <bits/stdc++.h>",
 			"using namespace std;",
 			"#define pi (3.141592653589)",
@@ -55,6 +56,8 @@
 			"int Floor2(int a, int b) {",
 			"return floor((double)a/(double)b);",
 			"}",
+			"ll Max(ll a, ll b)",
+			"{  return (a >= b ? a : b); }",
 			"\n",
 			"void solve()",
 			"{",
@@ -84,6 +87,55 @@
 		"description": "This is a c++ sniffpet",
 	},
 	/**
+		templete i=0----n
+	*/
+	"demo": {
+		"prefix": "cp",
+		"body": [
+			"#include <bits/stdc++.h>",
+			"using namespace std;",
+			"#define ll long long",
+			"#define ld long double",
+			"#define all(c) c.begin(), c.end()",
+			"#define nl             \"\\n\"",
+			"int32_t main()",
+			"{",
+			"int t = 1;",
+			" cin >> t;",
+			"cin.ignore();",
+			"while (t--)",
+			"{}",
+			"return 0;",
+			"}"
+		],
+		"description": "demo",
+	},
+	/**
+		lower bound
+	*/
+	"lowerBound": {
+		"prefix": "lowerBound",
+		"body": [
+			"vector<ll> v;",
+			"int lowerBound(ll x)",
+			"{",
+			"int high = 0;",
+			"int low = v.size() - 1;",
+			"int mid;",
+			" while (high <= low)",
+			"{",
+			"mid = (high + low) / 2;",
+			" if (x == v[mid])",
+			"{low = mid - 1;}",
+			"else if (x > v[mid])  high = mid + 1;",
+			"else if (x < v[mid]) low = mid - 1;",
+			"}",
+			"return high;",
+			"}",
+		],
+		"description": "lowerBound",
+	},
+	/**
 		for loop i=0----n
 	*/
 	"for loop": {
@@ -104,7 +156,7 @@
 		"body": [
 			"for(int i = 0 ; i<s.size(); i++)",
 			"{",
-			"	${0:/* code */}",
+			"${0:/* code */}",
 			"}"
 		],
 		"description": "For Loop",
@@ -117,7 +169,7 @@
 		"body": [
 			"while(t--)",
 			"{",
-			"	${0:/* code */}",
+			"${0:/* code */}",
 			"}"
 		],
 		"description": "while Loop",
@@ -157,7 +209,7 @@
 			"vi v(n);",
 			"for(int i = 0 ; i<n; i++)",
 			"{",
-			"	$cin >> v[i];",
+			"$cin >> v[i];",
 			"}",
 		],
 		"description": "array input",
@@ -172,11 +224,11 @@
 			"bool isprime(int n)",
 			"{",
 			"if(n<=1)return false;",
-			"for(int i=2;i<n;i++)if(n%i==0)return false;",
+			"for(int i=2;i<=sqrt(n);i++)if(n%i==0)return false;",
 			"return true;",
 			"}",
 		],
-		"description": "n prime number",
+		"description": "check prime number",
 	},
 	/**
 	prime list
@@ -185,12 +237,11 @@
 		"prefix": "sieve",
 		"body": [
 			"#define meme(a) memset(a,0, sizeof(a))",
-			"ll MAX 1000007",
+			"#define MAX 9000009",
 			"bool primes[MAX];",
-			"ll temp[MAX], c;",
+			"vi temp;",
 			"void Sieve(){",
 			" meme(primes);",
-			"c = 0;",
 			"primes[0] = primes[1] = 1;",
 			"for (ll i = 2; i * i <= MAX; i++)",
 			" {",
@@ -203,7 +254,7 @@
 			"for (int i = 2; i < MAX; i++)",
 			"{",
 			"if (primes[i] == 0)",
-			" temp[c] = i, c++;",
+			" temp.pb(i);",
 			"}",
 			"}",
 		],
